@@ -1,13 +1,190 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Image Processing Web App</title>
-</head>
-<body>
-    <h1>Image Processing Web App</h1>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="image">
-        <input type="submit" value="Process Image">
-    </form>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FOOD SNAP</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        
+        background-color: #a6e1a1;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        background-color: #58b368;
+        padding: 10px 0;
+        text-align: center;
+      }
+
+      .navbar h1 {
+        color: #fff;
+        margin: 0;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 0;
+      }
+
+      .food-snap-card {
+        background-color: #ffffff;
+        width: 80%;
+        border-radius: 15px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        display: flex;
+        overflow: hidden;
+      }
+
+      .food-images {
+        display: flex;
+        animation: slide 20s linear infinite;
+      }
+
+      .food-image {
+        border-radius: 10px;
+        height: 150px;
+        width: 150px;
+        object-fit: cover;
+      }
+
+      .info-section {
+        text-align: left;
+        flex-basis: 50%;
+      }
+
+      h1 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 20px;
+        color: #666;
+      }
+
+      button {
+        background-color: #58b368;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 50px;
+        color: #ffffff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #3d8b50;
+      }
+
+      @keyframes slide {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+
+      .loading-bar {
+  width: 100px; /* Adjust the width as needed */
+  height: 20px; /* Adjust the height as needed */
+  border: 2px solid #58b368; /* Green color, matching your theme */
+  border-radius: 20px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.bar {
+  width: 0;
+  height: 100%;
+  background-color: #58b368; /* Green color, matching your theme */
+  animation: load 1s linear; /* Adjust the animation duration as needed */
+}
+
+@keyframes load {
+  0% { width: 0; }
+  100% { width: 100%; } /* This ensures the entire bar fills */
+}
+
+
+
+    
+    </style>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <h1>FOOD SNAP</h1>
+    </div>
+
+    <div class="container">
+      <div class="food-snap-card">
+        <div class="food-images">
+          <!-- Replace with your image links, duplicate them for more images
+          <img src="H:\Projects\OCR\src\trp.png" alt="Food Image 1" class="food-image" />
+<img src="H:\Projects\OCR\src\krk.png" alt="Food Image 2" class="food-image" />
+<img src="H:\Projects\OCR\src\lays.png" alt="Food Image 3" class="food-image" />
+<img src="H:\Projects\OCR\src\mza.png" alt="Food Image 4" class="food-image"/>
+         Duplicate more images as needed -->
+        </div>
+        <div class="info-section">
+          <h1>FoodSnap</h1>
+          <p>
+            Snap a photo of your packaged food, get instant health insights.
+            Make informed choices effortlessly.
+          </p>
+          <p>Eat smarter with us!</p>
+          <form method="POST" enctype="multipart/form-data">
+            <input
+              type="file"
+              name="image"
+              style="display: none;"
+              id="imageUpload"
+            />
+            <button
+              type="button"
+              onclick="document.getElementById('imageUpload').click();"
+            >
+              Upload Image
+            </button>
+            <button type="submit" onclick="processImage();">Process!!!</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Function to show the loading screen and then redirect to the result page
+      function processImage() {
+        // Show the loading screen
+        document.getElementById('loading-screen').style.display = 'block';
+    
+        // After 3 seconds, redirect to the result page
+        setTimeout(function () {
+          window.location.href = 'result.html'; // Replace 'result.html' with your actual result page URL
+        }, 7000); // 3000 milliseconds (3 seconds)
+      }
+    </script>
+    
+    <div id="loading-screen" style="display: none;">
+      <div class="loading-bar">
+        <div class="bar"></div>
+      </div>
+    </div>
+    
+    
+    
+
+
+  </body>
 </html>
