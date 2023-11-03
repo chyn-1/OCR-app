@@ -111,9 +111,23 @@ def process_uploaded_image(image_path):
     # Calculate the overall score for list 1
     overall_score = healthy_score + unhealthy_score
 
-    result = overall_score
+    if overall_score < 0:
+        healthiness = "Non-eatable"
+        bg_color = "red"
+    elif overall_score >= 0 and overall_score < 25:
+        healthiness = "Unhealthy"
+        bg_color = "lightred"
+    elif overall_score >= 25 and overall_score < 50:
+        healthiness = "Okay"
+        bg_color = "yellow"
+    elif overall_score >= 50 and overall_score < 75:
+        healthiness = "Eatable"
+        bg_color = "lightgreen"
+    else:
+        healthiness = "Healthy"
+        bg_color = "green"
 
-    return result
+    return overall_score, bg_color, healthiness
 
 # Define the route for the web application
 @app.route('/', methods=['GET', 'POST'])
@@ -127,10 +141,10 @@ def index():
                 image.save(image_path)
 
                 # Process the uploaded image using your existing code
-                result = process_uploaded_image(image_path)
+                result, bg_color, healthiness = process_uploaded_image(image_path)
 
                 # Return the result to display on the webpage
-                return render_template('result.html', result=result)
+                return render_template('result.html', result=result, bg_color=bg_color, healthiness=healthiness)
 
     return render_template('index.html')
 
